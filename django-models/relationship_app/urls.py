@@ -1,29 +1,25 @@
+# myapp/urls.py
 from django.urls import path
-from .views import CustomLoginView, CustomLogoutView, register, list_books, LibraryDetailView
+from . import views
+from .views import list_books, LibraryDetailView
+from django.urls import path
+from .views import admin_view, librarian_view, member_view
+from .views import add_book, edit_book, delete_book
+
 
 urlpatterns = [
-    path('books/', list_books, name='list_books'),
-    path('library/<int:pk>/', LibraryDetailView.as_view(), name='library_detail'),
-    path('login/', CustomLoginView.as_view(), name='login'),
-    path('logout/', CustomLogoutView.as_view(), name='logout'),
-    path('register/', register, name='register'),
+    path('', views.book_list_view, name='home'),
+    path('', views.LibraryDetails_view, name='home'),
+    "LogoutView.as_view(template_name="logut.html, 
+    "LoginView.as_view(template_name="login.html"
+    "views.register"
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('admin/', admin_view, name='admin_view'),
+    path('librarian/', librarian_view, name='librarian_view'),
+    path('member/', member_view, name='member_view'),
+    path('books/add_book/', add_book, name='add_book'),
+    path('books/edit_book/<int:book_id>/', edit_book, name='edit_book'),
+    path('books/delete_book/<int:book_id>/', delete_book, name='delete_book'),
 ]
-
-
-
-# from atexit import register
-# from .import views
-# from .views import CustomLoginView, CustomLogoutView, register, list_books, LibraryDetailView
-
-# from django.contrib import admin
-# from django.urls import include, path
- 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('relationship_app/', include('relationship_app.urls')),
-#     path('books/', list_books, name='list_books'),
-#     path('library/<int:pk>/', LibraryDetailView.as_view(), name='library_detail'),
-#     path('login/', CustomLoginView.as_view(), name='login'),
-#     path('logout/', CustomLogoutView.as_view(), name='logout'),
-#     path('register/', register, name='register'),
-# ]
