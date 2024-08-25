@@ -1,6 +1,7 @@
-# Retrieve Operation
+from bookshelf.models import Book
 
-## Command
-```python
-book = Book.objects.get(title="1984")
-print(book.title, book.author, book.published_year)
+
+
+book = Book.objects.get(
+    title='1984', author='George Orwell', publication_year=1949)
+

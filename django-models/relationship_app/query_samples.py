@@ -1,18 +1,29 @@
-from relationship_app.models import Author, Book, Library, Librarian
+from models import Author, Book, Library, Librarian
 
-author_name = "George Orwell"
-author = Author.objects.get(name=author_name)
-books_by_author = Book.objects.filter(author=author)
-print(f"Books by {author_name}:")
-for book in books_by_author:
-    print(book.title)
+"""
+ Implement Sample Queries:
+    - Prepare a Python script `query_samples.py` in the `relationship_app` directory. This script should contain the query for each of the following of relationship:
+       - Query all books by a specific author.
+       - List all books in a library.
+       - Retrieve the librarian for a library.
+"""
+## filter books by author
+def query_books_by_author(author_name):
+    
+  try:
+    author = Author.objects.get(name=author_name)
+    # Filter books by the author object
+    books = Book.objects.filter(author=author)
 
-library_name = "Central Library"
-library = Library.objects.get(name=library_name)
-books_in_library = library.books.all()
-print(f"Books in {library_name}:")
-for book in books_in_library:
-    print(book.title)
+  except Author.DoesNotExist:
+     print(f"No author found with the name: {author}")
 
-librarian = Librarian.objects.get(library=library)
-print(f"Librarian for {library_name}: {librarian.name}")
+def list_all_the_books(library_name):
+     # Get the library object with the given name
+    library = Library.objects.get(name=library_name)
+     # Get all books in the library
+    books = library.books.all()
+def retrieve_librarian_from_a_lib(library_name):
+     library = Library.objects.get(name=library_name)
+     #librarian = Book.objects.filter()
+     librarian = Librarian.objects.get(library=library)

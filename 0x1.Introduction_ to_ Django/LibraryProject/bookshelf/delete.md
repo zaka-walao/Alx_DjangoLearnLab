@@ -1,9 +1,9 @@
-# Delete Operation
-
-## Command
-```python
 from bookshelf.models import Book
-book.delete()
 
-books = Book.objects.all()
-print(books)
+
+
+book = Book.objects.delete(
+    title='1984', author='George Orwell', publication_year=1949)
+
+
+book.delete()
