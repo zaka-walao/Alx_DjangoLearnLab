@@ -1,25 +1,21 @@
-# myapp/urls.py
+from .views import list_books
 from django.urls import path
 from . import views
-from .views import list_books, LibraryDetailView
-from django.urls import path
-from .views import admin_view, librarian_view, member_view
-from .views import add_book, edit_book, delete_book
+from .views import register, LoginView, LogoutView
 
 
 urlpatterns = [
-    path('', views.book_list_view, name='home'),
-    path('', views.LibraryDetails_view, name='home'),
-    "LogoutView.as_view(template_name="logut.html, 
-    "LoginView.as_view(template_name="login.html"
-    "views.register"
-    path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
-    path('register/', RegisterView.as_view(), name='register'),
-    path('admin/', admin_view, name='admin_view'),
-    path('librarian/', librarian_view, name='librarian_view'),
-    path('member/', member_view, name='member_view'),
-    path('books/add_book/', add_book, name='add_book'),
-    path('books/edit_book/<int:book_id>/', edit_book, name='edit_book'),
-    path('books/delete_book/<int:book_id>/', delete_book, name='delete_book'),
+    path('books/', views.list_books, name='list_books'),
+    path('library/<int:pk>/', views.LibraryDetailView.as_view(), name='library_detail'),
+    path('login/', LoginView.as_view(template_name='login')),
+    path('logout/', LogoutView.as_view(template_name='logout')),
+    path('register/', views.register, template_name='register'),
+    path('admin/', views.admin_view, name='admin_view'),
+    path('librarian/', views.librarian_view, name='librarian_view'),
+    path('member/', views.member_view, name='member_view'),
+    path('add_book/', views.add_book, name='add_book'),
+    path('edit_book/<int:book_id>/', views.edit_book, name='edit_book'),
+    path('delete_book/<int:book_id>/', views.delete_book, name='delete_book'),
 ]
+
+
