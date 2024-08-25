@@ -1,6 +1,6 @@
-["1984"]
-retrieved_book = Book.objects.get(id=book.id)
-retrieved_book
-retrieved_book.title = "Nineteen Eighty-Four"
-retrieved_book.save()
-retrieved_book
+# Retrieve Operation
+
+## Command
+```python
+book = Book.objects.get(title="1984")
+print(book.title, book.author, book.published_year)
