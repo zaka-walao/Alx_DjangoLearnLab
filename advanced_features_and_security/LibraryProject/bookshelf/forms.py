@@ -1,18 +1,15 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Book
+from .models import Student
 
-class CustomUserCreationForm(UserCreationForm):
+class BookForm(forms.ModelForm):
     class Meta:
-        model = CustomUser
-        fields = ('username', 'date_of_birth', 'profile_photo')
+        model = Student
+        fields = ["name", "age", "date_of_admission", "isbn"]
+        widget = {
+            "admission_date": forms.DateInput(attrs={"type":"date"}),
+        }
 
-class CustomUserChangeForm(UserChangeForm):
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'date_of_birth', 'profile_photo')
-
-class ExampleForm(forms.ModelForm):
-    class Meta:
-        model = Book
-        fields = ['title', 'author']
+class ExampleForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    date = forms.DateField(blank=False)
+    email = forms.EmailField(blank=False)   

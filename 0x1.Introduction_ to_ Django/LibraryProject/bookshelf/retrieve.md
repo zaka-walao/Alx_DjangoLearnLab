@@ -1,11 +1,10 @@
-# Retrieve
+# Retrieve Operation
 
-from bookshelf.models import Book
+## Python Command
+```python
+retrieved_book = Book.objects.get(title="1984")
+print(retrieved_book)
 
-# Retrieve the Book instance with the title "1984"
-book = Book.objects.get(title="1984")
 
-# Print book details
-print(book.title, book.author, book.publication_year)
-
-# Output: 1984 George Orwell 1949
+##output
+    # 1984
