@@ -1,1 +1,1 @@
-Library project.
+python manage.py runserver

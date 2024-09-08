@@ -1,15 +1,12 @@
 from django import forms
-from .models import Student
+from .models import Book
 
-class BookForm(forms.ModelForm):
+class ExampleForm(forms.ModelForm):
     class Meta:
-        model = Student
-        fields = ["name", "age", "date_of_admission", "isbn"]
-        widget = {
-            "admission_date": forms.DateInput(attrs={"type":"date"}),
+        model = Book
+        fields = ['title', 'author', 'published_date']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'author': forms.TextInput(attrs={'class': 'form-control'}),
+            'published_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
-
-class ExampleForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    date = forms.DateField(blank=False)
-    email = forms.EmailField(blank=False)   
