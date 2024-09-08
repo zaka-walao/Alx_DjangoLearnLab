@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Index</title>
+</head>
+<body>
+    <h1>Welcome to the Library</h1>
+    <p>Explore our collection of libraries below:</p>
+
+    <ul>
+        {% for library in libraries %}
+            <li>
+                <a href="{% url 'library_detail' pk=library.id %}">
+                    {{ library.name }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No libraries available at the moment.</li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'register' %}">Sign up</a></p>   
+    <p><a href="{% url 'login' %}">Log in</a></p>
+    <footer>
+        <p>&copy; 2024 Library App. All rights reserved.</p>
+    </footer>
+</body>
+</html>

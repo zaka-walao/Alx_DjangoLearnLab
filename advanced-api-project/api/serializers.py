@@ -2,25 +2,28 @@ from rest_framework import serializers
 from .models import Author, Book
 from datetime import datetime
 
+# Book serializer to serialize all fields of the book model
 class BookSerializer(serializers.ModelSerializer):
-    """Serializer for Book model, including validation for publication year."""
-
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = "__all__"
 
-    def validate_publication_year(self, value):
-        """Ensure the publication year is not in the future."""
+    # Validating publication year to acertain that it's not in the future
+    def validate_book(self, data):
+        publication_year = data.get('publication_year')
         current_year = datetime.now().year
-        if value > current_year:
-            raise serializers.ValidationError("The publication year cannot be in the future.")
-        return value
 
+        # Checking validity of the publication_year data
+        if publication_year > current_year:
+            raise serializers.ValidationError({
+                'publication_year': 'Publication year cannot be in the future.'
+            })
 
+        return data
+
+# Author serializer to serialize the name of the author, and to dynamically serialize the related comments 
 class AuthorSerializer(serializers.ModelSerializer):
-    """Serializer for Author model with nested BookSerializer."""
     books = BookSerializer(many=True, read_only=True)
-
     class Meta:
         model = Author
-        fields = ['name', 'books']
+        fields = ["name", "books"]

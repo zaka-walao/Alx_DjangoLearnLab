@@ -1,18 +1,15 @@
-# Permissions and Groups Setup
+This project is my third to build using Django
 
-## Custom Permissions
-In the `Book` model, the following custom permissions have been defined:
-- `can_view`: Allows viewing of books.
-- `can_create`: Allows creation of new books.
-- `can_edit`: Allows editing of existing books.
-- `can_delete`: Allows deletion of books.
 
-## User Groups
-Three groups have been created:
-- **Editors**: Can view, create, and edit books.
-- **Viewers**: Can only view books.
-- **Admins**: Can view, create, edit, and delete books.
+# Permissions
 
-## Views Enforcement
-Permissions are enforced in the views using the `@permission_required` decorator. Only users with the appropriate permissions can access the respective views.
+I have included permissions to the views can_create, delete, edit_book that restricts only users in authorized groups can access the views
 
+
+# Advanced security features implemented
+
+Ensured protection against CSRF, XSS, SQL injection by updating the settings file accordingly and updating the security measure like securing https and redirecting non-https to https  to avoid click-baiting.
+
+Updated templates by adding CSRF token to protect against CSRF
+Used ORM instead of text scripting to prevent XSS
+Ensured form validation in the views

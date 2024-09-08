@@ -1,12 +1,14 @@
 from django import forms
 from .models import Book
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
+        fields = ('username', 'email',)
 
 class ExampleForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'published_date']
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.TextInput(attrs={'class': 'form-control'}),
-            'published_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-        }
+        fields = ['title', 'author']
