@@ -1,13 +1,14 @@
-# Delete
+# Delete Operation
 
+## Python Command
+```python
 from bookshelf.models import Book
+retrieved_book.delete()
 
-# Retrieve the Book instance with the title "Nineteen Eighty-Four"
-book = Book.objects.get(title="Nineteen Eighty-Four")
+try:
+    Book.objects.get(title="My Updated Book")
+except Book.DoesNotExist:
+    print("Book successfully deleted.")
 
-# Delete the Book instance
-book.delete()
-
-(1, {'bookshelf.Book': 1})
-
-# No output from the `delete()` method. The book is deleted from the database.
+##Output
+    ## Book successfully deleted.
